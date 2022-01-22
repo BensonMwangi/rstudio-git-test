@@ -1,0 +1,18 @@
+---
+title: "Tidy"
+author: "Benson"
+date: "1/22/2022"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(tidytext)
+library(tidycharts)
+```
+
