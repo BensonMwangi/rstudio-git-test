@@ -1,0 +1,65 @@
+---
+title: "palmerpenguins"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(tidyverse)
+library(readr)
+library(palmerpenguins)
+
+mydata<- penguins
+
+```
+
+
+Column {data-width=100}
+
+-----------------------------------------------------------------------
+
+```{r}
+```
+
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Chart A
+
+```{r}
+mydata %>% select(species,bill_length_mm,bill_depth_mm) %>% 
+  ggplot(aes(x = bill_length_mm,y = bill_depth_mm,color = species))+
+  geom_point()+
+  labs(title = "scatter plot")
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Chart B
+
+```{r}
+
+mydata %>% select(species,year) %>% 
+  ggplot(aes(x = year,fill = species)) +
+  geom_histogram(position = "dodge")+
+  xlab("Year")
+```
+
+### Chart C
+
+```{r}
+
+mydata %>% 
+  filter(!is.na(sex)) %>% 
+  ggplot(aes(flipper_length_mm,bill_length_mm,color = sex,size = body_mass_g))+
+  geom_point(alpha = 0.5)+
+  facet_wrap(~species)
+
+```
+
